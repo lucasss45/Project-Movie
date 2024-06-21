@@ -352,7 +352,7 @@
         <!--Séries-->
         <scene sceneID="FQR-Hn-mb5">
             <objects>
-                <viewController id="hxi-F9-wAD" sceneMemberID="viewController">
+                <viewController id="hxi-F9-wAD" customClass="SerieListViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dyt-Bu-qyq">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -380,6 +380,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Séries" id="A31-qx-PBG"/>
                     <connections>
+                        <outlet property="collectionView" destination="ZFS-OT-ujA" id="Nyh-pp-7Bp"/>
                         <segue destination="Lqt-B1-2ev" kind="show" identifier="showMovieDetailVC" id="ttM-Ao-i1r"/>
                     </connections>
                 </viewController>
@@ -585,7 +586,7 @@
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
