@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct SeriesSearchResponse: Decodable {
-    let search: [Series]
+struct SerieSearchResponse: Decodable {
+    let search: [Serie]
     
     enum CodingKeys: String, CodingKey {
         case search = "Search"

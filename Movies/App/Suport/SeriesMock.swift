@@ -4,8 +4,8 @@
 
 import Foundation
 // Função para gerar dados mockados da série "The Last of Us"
-func gerarBreakingBad() -> Series {
-    return Series(
+func gerarBreakingBad() -> Serie {
+    return Serie(
         id: "tt0903747",
         title: "Breaking Bad",
         genre: "Drama, Crime, Suspense",
@@ -21,8 +21,8 @@ func gerarBreakingBad() -> Series {
 }
 
 // Função para gerar dados mockados da série "La Casa de Papel"
-func gerarLaCasaDePapel() -> Series {
-    return Series(
+func gerarLaCasaDePapel() -> Serie {
+    return Serie(
         id: "tt6468322",
         title: "La Casa de Papel",
         genre: "Drama, Crime, Mistério",
@@ -37,8 +37,8 @@ func gerarLaCasaDePapel() -> Series {
     )
 }
 
-func gerarTheLastOfUs() -> Series {
-    return Series(
+func gerarTheLastOfUs() -> Serie {
+    return Serie(
         id: "tt2235759",
         title: "The Last of Us",
         genre: "Ação, Aventura, Drama",

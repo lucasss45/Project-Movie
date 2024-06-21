@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SeriesService {
+struct SerieService {
 
     private let apiBaseURL = "https://www.omdbapi.com/?apikey="
     private let apiToken = ""
@@ -18,7 +18,7 @@ struct SeriesService {
 
     private let decoder = JSONDecoder()
 
-    func searchSeries(withTitle title: String, completion: @escaping ([Series]) -> Void) {
+    func searchSeries(withTitle title: String, completion: @escaping ([Serie]) -> Void) {
         let query = title.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         let endpoint = apiURL + "&s=\(query)&type=series" // Adicionando o parâmetro '&type=series' para buscar apenas séries
 
@@ -37,8 +37,8 @@ struct SeriesService {
             }
 
             do {
-                let seriesResponse = try decoder.decode(SeriesSearchResponse.self, from: data)
-                let series = seriesResponse.search
+                let serieResponse = try decoder.decode(SerieSearchResponse.self, from: data)
+                let series = serieResponse.search
                 completion(series)
             } catch {
                 print("FETCH ALL SERIES ERROR: \(error)")
@@ -49,8 +49,8 @@ struct SeriesService {
         task.resume()
     }
 
-    func searchSeries(withId seriesId: String, completion: @escaping (Series?) -> Void) {
-        let query = seriesId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+    func searchSerie(withId serieId: String, completion: @escaping (Serie?) -> Void) {
+        let query = serieId.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
         let endpoint = apiURL + "&i=\(query)&type=series" // Adicionando o parâmetro '&type=series' para buscar apenas séries
 
         guard let url = URL(string: endpoint) else {
@@ -67,8 +67,8 @@ struct SeriesService {
             }
 
             do {
-                let series = try decoder.decode(Series.self, from: data)
-                completion(series)
+                let serie = try decoder.decode(Serie.self, from: data)
+                completion(serie)
             } catch {
                 print("FETCH SERIES ERROR: \(error)")
                 completion(nil)
