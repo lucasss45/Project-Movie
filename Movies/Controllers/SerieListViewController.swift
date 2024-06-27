@@ -5,24 +5,21 @@
 //  Created by ebonatto-macOS on 20/06/24.
 //
 
-import Foundation
-
 import UIKit
 
 class SerieListViewController: UIViewController {
 
     // Outlets
-//    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     // Services
-    var serieService = Serie
+    var serieService = SerieService()
     
     // Search
-    private let searchController = UISearchController()
-    private let defaultSearchName = "Steve Jobs"
-    private var movies: [Movie] = []
-    private let segueIdentifier = "showMovieDetailVC"
+    private let searchControllerSeries = UISearchController()
+    private let defaultSearchName = "Game of Thrones"
+    private var series: [Serie] = []
+    private let segueIdentifier = "showSerieDetailVC"
     
     // Collection item parameters
     private let itemsPerRow = 2.0
@@ -33,7 +30,7 @@ class SerieListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViewController()
-        loadMovies(withTitle: defaultSearchName)
+        loadSeries(withTitle: defaultSearchName)
     }
     
     private func setupViewController() {
@@ -41,19 +38,19 @@ class SerieListViewController: UIViewController {
         setupCollectionView()
     }
     
-    private func loadMovies(withTitle movieTitle: String) {
-        movieService.searchMovies(withTitle: movieTitle) { movies in
+    private func loadSeries(withTitle serieTitle: String) {
+        serieService.searchSeries(withTitle: serieTitle) { series in
             DispatchQueue.main.async {
-                self.movies = movies
+                self.series = series
                 self.collectionView.reloadData()
             }
         }
     }
     
     private func setupSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.searchBar.placeholder = "Pesquisar"
-        navigationItem.searchController = searchController
+        searchControllerSeries.searchResultsUpdater = self
+        searchControllerSeries.searchBar.placeholder = "Pesquisar"
+        navigationItem.searchController = searchControllerSeries
     }
     
     private func setupCollectionView() {
@@ -76,9 +73,9 @@ class SerieListViewController: UIViewController {
 
 // MARK: - UICollectionViewDataSource
 
-extension MovieListViewController: UICollectionViewDataSource {
+extension SerieListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        movies.count
+        series.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -86,15 +83,15 @@ extension MovieListViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        let movie = movies[indexPath.row]
-        cell.setup(movie: movie)
+        let serie = series[indexPath.row]
+//        cell.setup(movie: movie)
         return cell
     }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension MovieListViewController: UICollectionViewDelegateFlowLayout {
+extension SerieListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
@@ -112,23 +109,23 @@ extension MovieListViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - UICollectionViewDelegate
 
-extension MovieListViewController: UICollectionViewDelegate {
+extension SerieListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedMovie = movies[indexPath.row]
-        performSegue(withIdentifier: segueIdentifier, sender: selectedMovie)
+        let selectedSerie = series[indexPath.row]
+//        performSegue(withIdentifier: segueIdentifier, sender: selectedSerie)
     }
 }
 
 // MARK: - UISearchResultsUpdating
 
-extension MovieListViewController: UISearchResultsUpdating {
+extension SerieListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchText = searchController.searchBar.text ?? ""
         
         if searchText.isEmpty {
-            loadMovies(withTitle: defaultSearchName)
+            loadSeries(withTitle: defaultSearchName)
         } else {
-            loadMovies(withTitle: searchText)
+            loadSeries(withTitle: searchText)
         }
         
         collectionView.reloadData()
