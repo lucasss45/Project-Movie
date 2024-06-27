@@ -381,7 +381,7 @@
                     <navigationItem key="navigationItem" title="Séries" id="A31-qx-PBG"/>
                     <connections>
                         <outlet property="collectionView" destination="ZFS-OT-ujA" id="Nyh-pp-7Bp"/>
-                        <segue destination="Lqt-B1-2ev" kind="show" identifier="showMovieDetailVC" id="ttM-Ao-i1r"/>
+                        <segue destination="Lqt-B1-2ev" kind="show" identifier="showSerieDetailVC" id="ttM-Ao-i1r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w5E-7Q-Ags" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
