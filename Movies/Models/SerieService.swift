@@ -10,7 +10,7 @@ import Foundation
 struct SerieService {
 
     private let apiBaseURL = "https://www.omdbapi.com/?apikey="
-    private let apiToken = ""
+    private let apiToken = "fad9f001"
 
     private var apiURL: String {
         apiBaseURL + apiToken
@@ -39,6 +39,7 @@ struct SerieService {
             do {
                 let serieResponse = try decoder.decode(SerieSearchResponse.self, from: data)
                 let series = serieResponse.search
+                print(series)
                 completion(series)
             } catch {
                 print("FETCH ALL SERIES ERROR: \(error)")
